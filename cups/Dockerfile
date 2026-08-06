@@ -30,6 +30,29 @@ RUN \
         dpkg \
         jq
 
+# Build the open-source rastertokpsl filter for Kyocera GDI (KPSL) printers
+# (FS-1040/1041, FS-1060DN/1061DN, FS-1020/1025/1120/1125MFP). Their PPDs
+# reference /usr/lib/cups/filter/rastertokpsl; the official filter is
+# proprietary and not available in the Alpine repositories, so compile the
+# vendored Apache-2.0 re-implementation (sv99/rastertokpsl-re).
+COPY rastertokpsl /tmp/rastertokpsl
+RUN \
+    apk add --no-cache --virtual .rastertokpsl-build \
+        gcc \
+        musl-dev \
+        cups-dev && \
+    gcc -O2 -o /usr/lib/cups/filter/rastertokpsl \
+        /tmp/rastertokpsl/main.c \
+        /tmp/rastertokpsl/rastertokpsl.c \
+        /tmp/rastertokpsl/halfton.c \
+        /tmp/rastertokpsl/libjbig/jbig.c \
+        /tmp/rastertokpsl/libjbig/jbig_ar.c \
+        /tmp/rastertokpsl/unicode/ConvertUTF.c \
+        -I/tmp/rastertokpsl \
+        -lcups -lm && \
+    rm -rf /tmp/rastertokpsl && \
+    apk del .rastertokpsl-build
+
 # Copy data
 COPY rootfs /
 
