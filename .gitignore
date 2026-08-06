@@ -57,3 +57,12 @@ coverage/
 *.tar
 .cache/
 .parcel-cache/
+
+# warren/burrow sandbox artifacts (created per-run inside the sandbox worktree,
+# never project files). Without these, a zero-commit run that the agent
+# legitimately no-ops on still leaves the tree "dirty" and warren flags it
+# as a dropped commit (failureReason: dropped_commit).
+.bun/
+.pi/
+.gitconfig.burrow
+.canopy/
