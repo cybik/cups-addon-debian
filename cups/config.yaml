@@ -10,6 +10,7 @@ arch:
   - amd64
 hassio_api: true
 host_network: true
+usb: true
 map:
   - data:rw
   - share:rw
