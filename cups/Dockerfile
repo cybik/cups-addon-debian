@@ -53,6 +53,28 @@ RUN \
     rm -rf /tmp/rastertokpsl && \
     apk del .rastertokpsl-build
 
+# Build and install the Dymo CUPS drivers (LabelWriter/LabelManager). The
+# Dymo PPDs (e.g. lw4xl.ppd for the LabelWriter 4XL) reference
+# /usr/lib/cups/filter/raster2dymolw; the filter is proprietary and not
+# available in the Alpine repositories, so compile the vendored GPLv2
+# dymo-cups-drivers source and install it (filters raster2dymolw and
+# raster2dymolm plus the official Dymo PPDs).
+# ACLOCAL/AUTOMAKE/AUTOCONF/AUTOHEADER=true keep make from re-running the
+# bundled autotools on files whose mtimes shift during the checkout.
+COPY dymo-cups-drivers /tmp/dymo-cups-drivers
+RUN \
+    apk add --no-cache --virtual .dymo-build \
+        g++ \
+        make \
+        cups-dev && \
+    cd /tmp/dymo-cups-drivers && \
+    ./configure && \
+    make ACLOCAL=true AUTOMAKE=true AUTOCONF=true AUTOHEADER=true && \
+    make install ACLOCAL=true AUTOMAKE=true AUTOCONF=true AUTOHEADER=true && \
+    cd / && \
+    rm -rf /tmp/dymo-cups-drivers && \
+    apk del .dymo-build
+
 # Copy data
 COPY rootfs /
 
