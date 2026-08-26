@@ -1,3 +1,5 @@
+
+
 # Home Assistant CUPS Print Server App
 
 [![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/arest/cups-addon)
@@ -134,7 +136,7 @@ This project is licensed under the MIT License.
 
 ## Data Persistence
 
-This app stores all CUPS data in the Home Assistant `/data` directory, ensuring:
+This app stores all CUPS data in the Home Assistant `/share` directory, ensuring:
 
 - Printer configurations persist across app restarts
 - Print jobs and settings are maintained through system reboots
@@ -142,8 +144,7 @@ This app stores all CUPS data in the Home Assistant `/data` directory, ensuring:
 - All CUPS data is included in Home Assistant backups
 
 The following directories are maintained in the persistent storage:
-- `/data/cups/config`: CUPS configuration files
-- `/data/cups/cache`: CUPS cache data
-- `/data/cups/logs`: CUPS log files
-- `/data/cups/state`: CUPS state information
-
+- `/share/cups/config`: CUPS configuration files
+- `/share/cups/cache`: CUPS cache data
+- `/share/cups/logs`: CUPS log files
+- `/share/cups/state`: CUPS state information
