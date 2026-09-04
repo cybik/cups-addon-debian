@@ -1,4 +1,8 @@
 # Changelog
+## [0.0.8] - 2026-09-04
+
+- Better
+
 ## [0.0.7] - 2026-09-04
 
 - Dashboard perms

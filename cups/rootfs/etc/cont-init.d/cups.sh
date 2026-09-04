@@ -5,8 +5,10 @@ set -e
 # ─────────────────────────────────────────────────────────────
 # Write a fresh cupsd.conf (hass static config)
 # ─────────────────────────────────────────────────────────────
+if bashio::config.has_value 'hass_instance_rooturl'; then
+ROOT_URL="$(bashio::config 'hass_instance_rooturl')"
+fi
 
-ROOT_URL="$(bashio::addon.hass_instance_rooturl)"
 ROOT_INTERFACE="$(bashio::addon.ip_address)"
 
 export ALLOW_BLOCK_BASE="  Allow localhost\n  Allow 10.0.0.0/8\n  Allow 172.16.0.0/12\n  Allow 192.168.0.0/16"
