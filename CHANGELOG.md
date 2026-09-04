@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.0.1] - 2026-09-04
+
+- Rewind to 0 for a variant build
+- Loaded Debian base
+- Removing clankers
+
 ## [1.2.1] — 2026-05-17
 
 - Fix: remove hardcoded aarch64 default from BUILD_FROM ARG

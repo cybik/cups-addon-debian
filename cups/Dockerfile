@@ -1,7 +1,8 @@
-FROM ghcr.io/home-assistant/base:latest
+FROM ghcr.io/home-assistant/base-debian:latest
 
 # Add env
 ENV LANG=C.UTF-8
+
 # Set CUPS environment variables for data persistence (HA shared directory)
 ENV CUPS_DATADIR=/share/cups
 ENV CUPS_CACHEDIR=/share/cups/cache
@@ -9,51 +10,29 @@ ENV CUPS_LOGDIR=/share/cups/logs
 ENV CUPS_STATEDIR=/share/cups/state
 ENV CUPS_SERVERROOT=/share/cups/config
 
-# Setup base
-# Note: hplip, foomatic-db, and foomatic-db-ppds were removed from Alpine 3.23
-# and are no longer available in stable repositories.
-# Gutenprint covers most printer models as a replacement.
-RUN \
-    echo "http://dl-cdn.alpinelinux.org/alpine/v$(cat /etc/alpine-release | cut -d'.' -f1,2)/main" > /etc/apk/repositories && \
-    echo "http://dl-cdn.alpinelinux.org/alpine/v$(cat /etc/alpine-release | cut -d'.' -f1,2)/community" >> /etc/apk/repositories && \
-    apk update && \
-    apk add --no-cache \
-        cups \
-        cups-filters \
-        ghostscript \
-        libjpeg-turbo \
-        net-snmp \
-        epson-inkjet-printer-escpr \
-        gutenprint \
-        gcompat \
-        libstdc++ \
-        dpkg \
-        jq
+# First update
+RUN apt update
 
-# Build the open-source rastertokpsl filter for Kyocera GDI (KPSL) printers
-# (FS-1040/1041, FS-1060DN/1061DN, FS-1020/1025/1120/1125MFP). Their PPDs
-# reference /usr/lib/cups/filter/rastertokpsl; the official filter is
-# proprietary and not available in the Alpine repositories, so compile the
-# vendored Apache-2.0 re-implementation (sv99/rastertokpsl-re).
-COPY rastertokpsl /tmp/rastertokpsl
+# Add Samsung Unified
 RUN \
-    apk add --no-cache --virtual .rastertokpsl-build \
-        gcc \
-        musl-dev \
-        cups-dev && \
-    gcc -O2 -o /usr/lib/cups/filter/rastertokpsl \
-        /tmp/rastertokpsl/main.c \
-        /tmp/rastertokpsl/rastertokpsl.c \
-        /tmp/rastertokpsl/halfton.c \
-        /tmp/rastertokpsl/libjbig/jbig.c \
-        /tmp/rastertokpsl/libjbig/jbig_ar.c \
-        /tmp/rastertokpsl/unicode/ConvertUTF.c \
-        -I/tmp/rastertokpsl \
-        -lcups -lm && \
-    rm -rf /tmp/rastertokpsl && \
-    apk del .rastertokpsl-build
+    bash -c 'echo "deb https://www.bchemnet.com/suldr/ debian extra" >> /etc/apt/sources.list' && \
+    curl https://www.bchemnet.com/suldr/pool/debian/extra/su/suldr-keyring_4_all.deb -o "/tmp/keyring.deb" \
+        && apt install -y "/tmp/keyring.deb" && rm -f "/tmp/keyring.deb"
+
+# Install all the things
+RUN \
+    apt update && \
+    apt install -y suldr-keyring && \
+    apt install -y \
+        printer-driver-all cups-filters cups-ppdc bluez-cups cups cups-bsd hplip \
+        openprinting-ppds scdaemon rng-tools gpm gutenprint-locales hpijs-ppds \
+        magicfilter psutils avahi-autoipd \
+        suld-driver2-1.00.39 suld-ppd-4 suld-driver2-common-1
+
+
 
 # Copy data
+## nya???
 COPY rootfs /
 
 # Expose CUPS web interface port

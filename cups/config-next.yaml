@@ -21,7 +21,10 @@ ports_description:
 options:
   admin_username: "admin"
   admin_password: "admin"
+  printer_driver_packages: ""
+  printer_driver_apt_source_urls: ""
 schema:
   admin_username: string
   admin_password: password
+  printer_driver_apt_source_urls: string
 startup: services

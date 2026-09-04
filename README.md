@@ -1,6 +1,4 @@
-
-
-# Home Assistant CUPS Print Server App
+# Home Assistant CUPS Print Server App - Clanker-less Debian variant
 
 [![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/arest/cups-addon)
 [![Supports aarch64 Architecture](https://img.shields.io/badge/aarch64-yes-green.svg)](https://github.com/arest/cups-addon)
@@ -16,6 +14,7 @@ This Home Assistant app provides a CUPS (Common Unix Printing System) print serv
 - **Printer Support**: Compatible with a wide range of network and USB printers
 - **Lightweight**: Built on Alpine Linux for minimal resource usage
 - **Data Persistence**: Printer settings and configurations persist across restarts and updates
+- **Fucking nerd**: Using debian so that deb repositories may be leveraged to install printer packages more easily
 
 ## Installation
 
@@ -24,8 +23,8 @@ This Home Assistant app provides a CUPS (Common Unix Printing System) print serv
 1. Navigate to your Home Assistant instance.
 2. Go to **Settings** → **Apps** → **Install App**.
 3. Click the 3-dot menu in the top right corner and select **Repositories**.
-4. Add `https://github.com/arest/cups-addon` as a repository.
-5. Find the "CUPS Print Server" app in the store and click it.
+4. Add `https://github.com/cybik/cups-addon-debian` as a repository.
+5. Find the "CUPS Print Server (debian)" app in the store and click it.
 6. Click **Install**.
 
 ### Manual Installation
@@ -34,7 +33,7 @@ If you prefer to manually install:
 
 1. Clone this repository to your local machine:
    ```bash
-   git clone https://github.com/arest/cups-addon.git
+   git clone https://github.com/cybik/cups-addon-debian.git
    ```
 
 2. Copy the repository to your Home Assistant add-ons directory:
