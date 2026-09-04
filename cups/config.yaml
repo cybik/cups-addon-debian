@@ -1,5 +1,5 @@
 ---
-version: 0.0.7
+version: 0.0.8
 slug: cups-deb
 name: CUPS Print Server (debian)
 description: CUPS print server for network printing, Debian variant
