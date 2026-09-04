@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.0.2] - 2026-09-04
+
+- Metadata
+
 ## [0.0.1] - 2026-09-04
 
 - Rewind to 0 for a variant build
