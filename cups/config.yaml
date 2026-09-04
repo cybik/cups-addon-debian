@@ -2,7 +2,7 @@
 version: 0.0.1
 slug: cups-deb
 name: CUPS Print Server (debian)
-description: CUPS print server for network printing
+description: CUPS print server for network printing, Debian variant
 url: https://github.com/cybik/cups-addon-debian
 codenotary: cybik@cybik.moe
 arch:
