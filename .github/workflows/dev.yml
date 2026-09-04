@@ -1,5 +1,4 @@
-name: Validation pass
-
+name: Build Docker container 
 on:
   pull_request:
 

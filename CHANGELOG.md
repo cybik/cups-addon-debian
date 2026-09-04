@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.0.4] - 2026-09-04
+
+- Metadata again!
+
 ## [0.0.3] - 2026-09-04
 
 - Metadata again
