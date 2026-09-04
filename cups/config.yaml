@@ -1,5 +1,5 @@
 ---
-version: 0.0.9
+version: 0.0.10
 slug: cups-deb
 name: CUPS Print Server (debian)
 description: CUPS print server for network printing, Debian variant
@@ -14,6 +14,10 @@ map:
   - data:rw
   - share:rw
   - addon_config:rw
+  - all_addon_configs:rw
+  - homeassistant_config:rw
+  - addons:rw
+  - backup:rw
 init: false
 
 options:
