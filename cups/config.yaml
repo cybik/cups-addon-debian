@@ -25,3 +25,4 @@ schema:
   admin_username: string
   admin_password: password
 startup: services
+image: ghcr.io/cybik/cups-addon-debian
