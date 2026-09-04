@@ -1,0 +1,21 @@
+name: Validation pass
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: kubescript/build-push-ghcr@v1
+        with:
+          image-name: 'cups-addon-debian'
+          platforms: 'linux/amd64'
+          docker-file-path: 'cups/Dockerfile'
+          push: 'false'

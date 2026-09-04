@@ -32,7 +32,6 @@ RUN \
 
 
 # Copy data
-## nya???
 COPY rootfs /
 
 # Expose CUPS web interface port
