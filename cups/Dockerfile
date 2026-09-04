@@ -38,3 +38,9 @@ EXPOSE 631
 
 HEALTHCHECK \
     CMD lpstat -r || exit 1
+
+    LABEL \
+
+  io.hass.version="VERSION" \
+  io.hass.type="app" \
+  io.hass.arch="aarch64|amd64"
