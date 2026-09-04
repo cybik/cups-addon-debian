@@ -1,4 +1,7 @@
 # Changelog
+## [0.0.6] - 2026-09-04
+
+- Still not fixed but maybe the link
 
 ## [0.0.5] - 2026-09-04
 
