@@ -17,6 +17,7 @@ jobs:
       - name: Build and push to GHCR
         uses: kubescript/build-push-ghcr@v1
         with:
-          image-name: "cups-addon-debian"
-          platforms: "linux/amd64"
-          docker-file-path: "cups/Dockerfile"
+          image-name: 'cups-addon-debian'
+          platforms: 'linux/amd64'
+          docker-build-context: 'cups'
+          docker-file-path: 'cups/Dockerfile'

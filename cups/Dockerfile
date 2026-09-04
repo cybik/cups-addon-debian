@@ -30,7 +30,6 @@ RUN \
         suld-driver2-1.00.39 suld-ppd-4 suld-driver2-common-1
 
 
-
 # Copy data
 COPY rootfs /
 
