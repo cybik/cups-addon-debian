@@ -1,4 +1,8 @@
 # Changelog
+## [0.0.7] - 2026-09-04
+
+- Dashboard perms
+
 ## [0.0.6] - 2026-09-04
 
 - Still not fixed but maybe the link

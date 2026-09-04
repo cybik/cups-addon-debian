@@ -1,5 +1,5 @@
 ---
-version: 0.0.6
+version: 0.0.7
 slug: cups-deb
 name: CUPS Print Server (debian)
 description: CUPS print server for network printing, Debian variant
@@ -14,12 +14,12 @@ map:
   - data:rw
   - share:rw
 init: false
+
 options:
-  admin_username: "admin"
-  admin_password: "admin"
+  hass_instance_rooturl: ""
 schema:
-  admin_username: str
-  admin_password: password
+  hass_instance_rooturl: str
+
 startup: services
 
 image: ghcr.io/cybik/cups-addon-debian-{arch}
@@ -32,6 +32,7 @@ ports:
   631/tcp: 631
 ports_description:
   631/tcp: CUPS web interface and printing port
+  
 ingress: true
 ingress_entry: files
 ingress_port: 631
