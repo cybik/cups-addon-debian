@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.0.5] - 2026-09-04
+
+- Fixed the freaking metadata.
+
 ## [0.0.4] - 2026-09-04
 
 - Metadata again!

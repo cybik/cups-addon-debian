@@ -26,8 +26,8 @@ jobs:
           docker-build-context: 'cups'
           docker-file-path: 'cups/Dockerfile'
           labels: |
-            io.hass.version="${{ steps.get_version.outputs.version }}" \
-            io.hass.type=app \
+            io.hass.version=${{ steps.get_version.outputs.version }}
+            io.hass.type=app
             io.hass.arch=amd64
 
       - run: |
